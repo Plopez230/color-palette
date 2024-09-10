@@ -170,6 +170,27 @@ def myPalette(x):
         return (snippet);
     }
 
+    SnippetGLSL()
+    {
+        const a = this.state.a;
+        const b = this.state.b;
+        const c = this.state.c;
+        const d = this.state.d;
+        const snippet = `
+const float PI = 3.1415926535897932384626433832795;
+
+vec3 myPalette(float x)
+{
+    return vec3(
+        ${a[0].toFixed(2)} + ${b[0].toFixed(2)} * cos(2.0 * PI * (${c[0].toFixed(2)} * x + ${d[0].toFixed(2)})),
+        ${a[1].toFixed(2)} + ${b[1].toFixed(2)} * cos(2.0 * PI * (${c[1].toFixed(2)} * x + ${d[1].toFixed(2)})),
+        ${a[2].toFixed(2)} + ${b[2].toFixed(2)} * cos(2.0 * PI * (${c[2].toFixed(2)} * x + ${d[2].toFixed(2)}))
+    );
+}
+`
+        return (snippet);
+    }
+
     renderSnippet()
     {
         return (
@@ -205,6 +226,24 @@ def myPalette(x):
                     <pre style={{"textAlign": "left"}}>
                         <code className="javascript">
                             {this.SnippetPython()}
+                        </code>
+                    </pre>
+                </div>
+              </div>
+            </div>
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingThree">
+                <button className="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                  GLSL
+                </button>
+              </h2>
+              <div id="collapseThree" className="accordion-collapse collapse"
+                data-bs-parent="#accordionExample">
+                <div className="accordion-body">
+                    <pre style={{"textAlign": "left"}}>
+                        <code className="javascript">
+                            {this.SnippetGLSL()}
                         </code>
                     </pre>
                 </div>
