@@ -200,7 +200,7 @@ class Pallette extends React.Component
     {
         return (
             <button
-                className="btn btn-primary w-100"
+                className="btn btn-primary w-100 mt-4"
                 onClick={() => this.setState(stateFunction())}
             >
                 {name}
@@ -213,7 +213,7 @@ class Pallette extends React.Component
         return (
             <div className="card border-0 p-2">
                 {this.renderCanvas()}
-                <table>
+                <table className='mt-4'>
                     <thead>
                         <tr>
                             <th></th>
