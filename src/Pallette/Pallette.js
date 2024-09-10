@@ -7,7 +7,7 @@ class Pallette extends React.Component
     {
         super(props);
         this.state = this.randomState();
-        window.onResize = this.onResize.bind(this);
+        window.onresize = this.onResize.bind(this);
     }
 
     componentDidUpdate(prevProps)
@@ -29,6 +29,7 @@ class Pallette extends React.Component
         ctx.canvas.width = position_info.width;
         ctx.canvas.height = position_info.width / 5;
         this.drawGradient();
+        console.log("Resize");
     }
 
     onMouseEnter(event)
@@ -51,8 +52,8 @@ class Pallette extends React.Component
         const position_info = canvas_container.getBoundingClientRect();
         const x = (event.clientX - position_info.x) / position_info.width;
         const new_state = {
-            clientX: event.clientX - position_info.x - 30,
-            clientY: event.clientY - position_info.y + 30,
+            clientX: event.clientX - position_info.x,
+            clientY: event.clientY - position_info.y,
             x: x
         }
         this.setState(new_state);
@@ -106,7 +107,8 @@ class Pallette extends React.Component
             r = colorValue(r);
             g = colorValue(g);
             b = colorValue(b);
-            return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
+            return "#" + (
+                (1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
         }
         const a = this.state.a;
         const b = this.state.b;
@@ -136,15 +138,15 @@ class Pallette extends React.Component
                 style={{
                     display: this.state.showSample ? 'block' : 'none',
                     position: "absolute",
-                    left: this.state.clientX,
-                    top: this.state.clientY,
+                    left: this.state.clientX ? this.state.clientX - 50 : 0,
+                    top: this.state.clientY ? this.state.clientY + 30 : 0,
                 }}
             >
                 <div className='card p-2'>
                     <div
                         className='card-body p-2'
                         style={{
-                            "background-color": this.getColor(this.state.x),
+                            "backgroundColor": this.getColor(this.state.x),
                             "height": "50px",
                             "width": "70px",
                         }}
