@@ -329,9 +329,9 @@ vec3 myPalette(float x)
                 <table className='mt-4'>
                     <thead>
                         <tr>
-                            <th>Red</th>
-                            <th>Green</th>
-                            <th>Blue</th>
+                            <th><h1>Red</h1></th>
+                            <th><h1>Green</h1></th>
+                            <th><h1>Blue</h1></th>
                         </tr>
                     </thead>
                     <tbody>
