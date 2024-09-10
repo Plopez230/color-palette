@@ -47,12 +47,9 @@ class Pallette extends React.Component
 
     onMouseMove(event)
     {
-        const canvas = document.getElementById("canvas");
         const canvas_container = document.getElementById("canvas-container");
-        const ctx = canvas.getContext("2d");
         const position_info = canvas_container.getBoundingClientRect();
         const x = (event.clientX - position_info.x) / position_info.width;
-        const color = this.getColor(x);
         const new_state = {
             clientX: event.clientX - position_info.x - 30,
             clientY: event.clientY - position_info.y + 30,
@@ -109,7 +106,7 @@ class Pallette extends React.Component
             r = colorValue(r);
             g = colorValue(g);
             b = colorValue(b);
-            return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
+            return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
         }
         const a = this.state.a;
         const b = this.state.b;
