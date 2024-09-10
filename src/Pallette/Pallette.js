@@ -98,18 +98,7 @@ class Pallette extends React.Component
 
     getColor(x)
     {
-        function colorValue(c)
-        {
-            if (c < 0)
-                return (0);
-            if (c > 255)
-                return (255);
-            return (Math.floor(c));
-        }
         function rgbToHex(r, g, b) {
-            r = colorValue(r);
-            g = colorValue(g);
-            b = colorValue(b);
             return "#" + (
                 (1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
         }
@@ -117,10 +106,11 @@ class Pallette extends React.Component
         const b = this.state.b;
         const c = this.state.c;
         const d = this.state.d;
-        const c_r = a[0] + b[0] * Math.cos(2 * Math.PI * (c[0] * x + d[0]));
-        const c_g = a[1] + b[1] * Math.cos(2 * Math.PI * (c[1] * x + d[1]));
-        const c_b = a[2] + b[2] * Math.cos(2 * Math.PI * (c[2] * x + d[2]));
-        return (rgbToHex(255 * c_r, 255 * c_g, 255 * c_b));
+        return (rgbToHex(
+            Math.max(Math.min(Math.floor(255 * (a[0] + b[0] * Math.cos(2 * Math.PI * (c[0] * x + d[0])))), 255), 0),
+            Math.max(Math.min(Math.floor(255 * (a[1] + b[1] * Math.cos(2 * Math.PI * (c[1] * x + d[1])))), 255), 0),
+            Math.max(Math.min(Math.floor(255 * (a[2] + b[2] * Math.cos(2 * Math.PI * (c[2] * x + d[2])))), 255), 0)
+        ));
     }
 
     setParameter(parameter, index, event)
