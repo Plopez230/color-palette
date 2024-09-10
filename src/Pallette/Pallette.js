@@ -138,7 +138,7 @@ class Pallette extends React.Component
                 style={{
                     display: this.state.showSample ? 'block' : 'none',
                     position: "absolute",
-                    left: this.state.clientX ? this.state.clientX - 50 : 0,
+                    left: this.state.clientX ? this.state.clientX - 40 : 0,
                     top: this.state.clientY ? this.state.clientY + 30 : 0,
                 }}
             >
