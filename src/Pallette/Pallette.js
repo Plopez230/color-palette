@@ -140,12 +140,12 @@ class Pallette extends React.Component
         const c = this.state.c;
         const d = this.state.d;
         const snippet = `
-function myPallette(x)
+function myPalette(x)
 {
     return ([
-        ${a[0]} + ${b[0]} * Math.cos(2 * Math.PI * (${c[0]} * x + ${d[0]})),
-        ${a[1]} + ${b[1]} * Math.cos(2 * Math.PI * (${c[1]} * x + ${d[1]})),
-        ${a[2]} + ${b[2]} * Math.cos(2 * Math.PI * (${c[2]} * x + ${d[2]})),
+        Math.max(Math.min(Math.floor(255 * (${a[0]} + ${b[0]} * Math.cos(2 * Math.PI * (${c[0]} * x + ${d[0]})))), 255), 0),
+        Math.max(Math.min(Math.floor(255 * (${a[1]} + ${b[1]} * Math.cos(2 * Math.PI * (${c[1]} * x + ${d[1]})))), 255), 0),
+        Math.max(Math.min(Math.floor(255 * (${a[2]} + ${b[2]} * Math.cos(2 * Math.PI * (${c[2]} * x + ${d[2]})))), 255), 0),
     ]);
 }`
         return (snippet);
@@ -160,11 +160,11 @@ function myPallette(x)
         const snippet = `
 import math
 
-def myPallette(x):
+def myPalette(x):
     return [
-        ${a[0]} + ${b[0]} * math.cos(2 * math.pi * (${c[0]} * x + ${d[0]})),
-        ${a[1]} + ${b[1]} * math.cos(2 * math.pi * (${c[1]} * x + ${d[1]})),
-        ${a[2]} + ${b[2]} * math.cos(2 * math.pi * (${c[2]} * x + ${d[2]})),
+        max(min(math.floor(255 * (${a[0]} + ${b[0]} * math.cos(2 * math.pi * (${c[0]} * x + ${d[0]})))), 255), 0),
+        max(min(math.floor(255 * (${a[1]} + ${b[1]} * math.cos(2 * math.pi * (${c[1]} * x + ${d[1]})))), 255), 0),
+        max(min(math.floor(255 * (${a[2]} + ${b[2]} * math.cos(2 * math.pi * (${c[2]} * x + ${d[2]})))), 255), 0),
     ]
 `
         return (snippet);
