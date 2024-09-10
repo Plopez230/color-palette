@@ -1,4 +1,8 @@
 import React from 'react';
+import hljs from "highlight.js/lib/core";
+import javascript from "highlight.js/lib/languages/javascript";
+
+hljs.registerLanguage("javascript", javascript);
 
 class Pallette extends React.Component
 {
@@ -29,7 +33,6 @@ class Pallette extends React.Component
         ctx.canvas.width = position_info.width;
         ctx.canvas.height = position_info.width / 5;
         this.drawGradient();
-        console.log("Resize");
     }
 
     onMouseEnter(event)
@@ -130,6 +133,87 @@ class Pallette extends React.Component
         this.setState(new_state);
     }
 
+    SnippetJS()
+    {
+        const a = this.state.a;
+        const b = this.state.b;
+        const c = this.state.c;
+        const d = this.state.d;
+        const snippet = `
+function myPallette(x)
+{
+    return ([
+        ${a[0]} + ${b[0]} * Math.cos(2 * Math.PI * (${c[0]} * x + ${d[0]})),
+        ${a[1]} + ${b[1]} * Math.cos(2 * Math.PI * (${c[1]} * x + ${d[1]})),
+        ${a[2]} + ${b[2]} * Math.cos(2 * Math.PI * (${c[2]} * x + ${d[2]})),
+    ]);
+}`
+        return (snippet);
+    }
+
+    SnippetPython()
+    {
+        const a = this.state.a;
+        const b = this.state.b;
+        const c = this.state.c;
+        const d = this.state.d;
+        const snippet = `
+import math
+
+def myPallette(x):
+    return [
+        ${a[0]} + ${b[0]} * math.cos(2 * math.pi * (${c[0]} * x + ${d[0]})),
+        ${a[1]} + ${b[1]} * math.cos(2 * math.pi * (${c[1]} * x + ${d[1]})),
+        ${a[2]} + ${b[2]} * math.cos(2 * math.pi * (${c[2]} * x + ${d[2]})),
+    ]
+`
+        return (snippet);
+    }
+
+    renderSnippet()
+    {
+        return (
+            <div className="accordion pt-4" id="accordionExample">
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingOne">
+                <button className="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                  JavaScript
+                </button>
+              </h2>
+              <div id="collapseOne" className="accordion-collapse collapse"
+                data-bs-parent="#accordionExample">
+                <div className="accordion-body">
+                    <pre style={{"textAlign": "left"}}>
+                        <code className="javascript">
+                            {this.SnippetJS()}
+                        </code>
+                    </pre>
+                </div>
+              </div>
+            </div>
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingTwo">
+                <button className="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                  Python
+                </button>
+              </h2>
+              <div id="collapseTwo" className="accordion-collapse collapse"
+                data-bs-parent="#accordionExample">
+                <div className="accordion-body">
+                    <pre style={{"textAlign": "left"}}>
+                        <code className="javascript">
+                            {this.SnippetPython()}
+                        </code>
+                    </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+    }
+
     renderSample()
     {
         return (
@@ -216,7 +300,6 @@ class Pallette extends React.Component
                 <table className='mt-4'>
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Red</th>
                             <th>Green</th>
                             <th>Blue</th>
@@ -224,25 +307,21 @@ class Pallette extends React.Component
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Offset</td>
                             <td>{this.renderSlider('a', 0)}</td>
                             <td>{this.renderSlider('a', 1)}</td>
                             <td>{this.renderSlider('a', 2)}</td>
                         </tr>
                         <tr>
-                            <td>Amplitude</td>
                             <td>{this.renderSlider('b', 0)}</td>
                             <td>{this.renderSlider('b', 1)}</td>
                             <td>{this.renderSlider('b', 2)}</td>
                         </tr>
                         <tr>
-                            <td>Frequency</td>
                             <td>{this.renderSlider('c', 0)}</td>
                             <td>{this.renderSlider('c', 1)}</td>
                             <td>{this.renderSlider('c', 2)}</td>
                         </tr>
                         <tr>
-                            <td>Phase</td>
                             <td>{this.renderSlider('d', 0)}</td>
                             <td>{this.renderSlider('d', 1)}</td>
                             <td>{this.renderSlider('d', 2)}</td>
@@ -251,6 +330,7 @@ class Pallette extends React.Component
                 </table>
                 {this.renderButton("Random", this.randomState.bind(this))}
                 {this.renderSample()}
+                {this.renderSnippet()}
             </div>
         );
     }

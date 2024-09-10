@@ -5,12 +5,12 @@ function Navbar()
 {
   return (
     <header>
-      <nav class="navbar navbar-expand-lg bg-white">
-        <div class="container-fluid mt-1">
+      <nav className="navbar navbar-expand-lg bg-white">
+        <div className="container-fluid mt-1">
           <div>
-            <a class="github-button" href="https://github.com/plopez230" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @plopez230 on GitHub">Follow @plopez230</a>
+            <a className="github-button" href="https://github.com/plopez230" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @plopez230 on GitHub">Follow @plopez230</a>
             &nbsp;&nbsp;
-            <a class="github-button" href="https://github.com/plopez230/color-pallette" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Star plopez230/color-pallette on GitHub">Star</a>
+            <a className="github-button" href="https://github.com/plopez230/color-pallette" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Star plopez230/color-pallette on GitHub">Star</a>
           </div>
         </div>
       </nav>
